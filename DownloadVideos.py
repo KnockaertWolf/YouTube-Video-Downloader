@@ -6,7 +6,7 @@ import os
 screen = tk.Tk()
 screen.title("YT Video Downloader")
 
-default_location_txt = 'Default location: Currentlocation/videos'
+default_location_txt = 'Default location: ./videos'
 
 current_location = os.getcwd()
 
@@ -18,6 +18,7 @@ def on_entry_click(event):
        location_enter.config(fg = 'black')
 
 def on_focusout(event):
+    location_enter.delete(0, "end")
     if location_enter_get == '':
         location_enter.insert(0, default_location_txt)
         location_enter.config(fg = 'grey')
@@ -50,11 +51,11 @@ LinkEnter = tk.Entry(bg="white", width=50)
 location_enter_text = tk.Label(text="location:")
 location_enter = tk.Entry(bg="white", width=50)
 location_enter_get = location_enter.get()
+location_enter.insert(0, default_location_txt)
 
 link_enter_text.pack()
 LinkEnter.pack()
 
-location_enter.insert(0, default_location_txt)
 location_enter.bind('<FocusIn>', on_entry_click)
 location_enter.bind('<FocusOut>', on_focusout)
 location_enter.config(fg = 'grey')
